@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Actualizar Cliente #{{ cliente.id }}</h3>
+<form method="POST" action="{% url 'realizar_actualizacion_cliente' cliente.id %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Nombre</label>
+      <input class="form-control" name="nombre" value="{{ cliente.nombre }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Apellido</label>
+      <input class="form-control" name="apellido" value="{{ cliente.apellido }}" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Email</label>
+      <input class="form-control" name="email" type="email" value="{{ cliente.email }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Teléfono</label>
+      <input class="form-control" name="telefono" value="{{ cliente.telefono }}">
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Dirección</label>
+    <input class="form-control" name="direccion" value="{{ cliente.direccion }}" required>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Número Seguro Médico</label>
+      <input class="form-control" name="num_seguro_medico" value="{{ cliente.num_seguro_medico }}">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha de Nacimiento</label>
+      <input class="form-control" name="fecha_nacimiento" type="date" value="{{ cliente.fecha_nacimiento|date:'Y-m-d' }}" required>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Fecha de Registro</label>
+    <input class="form-control" name="fecha_registro" type="date" value="{{ cliente.fecha_registro|date:'Y-m-d' }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Preferencias</label>
+    <textarea class="form-control" name="preferencias" rows="2">{{ cliente.preferencias }}</textarea>
+  </div>
+  <button class="btn btn-success" type="submit">Guardar Cambios</button>
+  <a class="btn btn-secondary" href="{% url 'ver_clientes' %}">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Borrar Receta</h3>
+<p>¿Desea eliminar la receta para el cliente <strong>{{ receta.cliente.nombre }} {{ receta.cliente.apellido }}</strong>?</p>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger" type="submit">Eliminar</button>
+  <a class="btn btn-secondary" href="{% url 'ver_recetas' %}">Cancelar</a>
+</form>
+{% endblock %}

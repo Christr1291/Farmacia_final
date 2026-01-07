@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Detalles de Ventas</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Venta (Factura)</th>
+        <th>Medicamento</th>
+        <th>Cantidad</th>
+        <th>Precio Unit.</th>
+        <th>IVA</th>
+        <th>Subtotal</th>
+        <th>Receta?</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in detalles %}
+      <tr>
+        <td>{{ d.id }}</td>
+        <td>{{ d.venta.numero_factura }}</td>
+        <td>{{ d.medicamento.nombre_medicamento }}</td>
+        <td>{{ d.cantidad }}</td>
+        <td>${{ d.precio_unitario_venta }}</td>
+        <td>${{ d.iva_aplicado }}</td>
+        <td>${{ d.subtotal }}</td>
+        <td>{% if d.receta_asociada %}Sí (ID: {{ d.receta_asociada.id }}){% else %}No{% endif %}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="8">No hay detalles registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

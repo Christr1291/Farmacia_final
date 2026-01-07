@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Agregar Receta Médica</h3>
+<form method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Cliente</label>
+      <select class="form-control" name="cliente" required>
+        <option value="">-- Seleccionar Cliente --</option>
+        {% for c in clientes %}
+          <option value="{{ c.id }}">{{ c.nombre }} {{ c.apellido }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>ID Médico Externo</label>
+      <input class="form-control" name="id_medico_receto" type="number" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Fecha Emisión</label>
+      <input class="form-control" name="fecha_emision" type="date" value="{% now 'Y-m-d' %}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha Vencimiento</label>
+      <input class="form-control" name="fecha_vencimiento" type="date" required>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label>Diagnóstico</label>
+    <textarea class="form-control" name="diagnostico" rows="2" required></textarea>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Medicamento Recetado (Texto)</label>
+      <textarea class="form-control" name="medicamento_recetado_texto" rows="2" required></textarea>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Dosis Indicada</label>
+      <textarea class="form-control" name="dosis_indicada" rows="2" required></textarea>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label>Estado Receta</label>
+    <input class="form-control" name="estado_receta" value="Activa" required>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Agregar Receta</button>
+</form>
+{% endblock %}

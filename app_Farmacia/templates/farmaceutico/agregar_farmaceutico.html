@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Agregar Farmacéutico</h3>
+<form method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Nombre</label>
+      <input class="form-control" name="nombre" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Apellido</label>
+      <input class="form-control" name="apellido" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label>DNI</label>
+      <input class="form-control" name="dni" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Licencia Colegiado</label>
+      <input class="form-control" name="licencia_colegiado" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Turno</label>
+      <input class="form-control" name="turno" placeholder="Mañana/Tarde/Noche" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Email</label>
+      <input class="form-control" name="email" type="email" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Teléfono</label>
+      <input class="form-control" name="telefono" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Salario</label>
+      <input class="form-control" name="salario" type="number" step="0.01" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha Contratación</label>
+      <input class="form-control" name="fecha_contratacion" type="date" value="{% now 'Y-m-d' %}" required>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Agregar Farmacéutico</button>
+</form>
+{% endblock %}

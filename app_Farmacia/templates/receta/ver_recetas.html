@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Lista de Recetas Médicas</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>ID Médico</th>
+        <th>Emisión</th>
+        <th>Vencimiento</th>
+        <th>Diagnóstico</th>
+        <th>Medicamento</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in recetas %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.cliente.nombre }} {{ r.cliente.apellido }}</td>
+        <td>{{ r.id_medico_receto }}</td>
+        <td>{{ r.fecha_emision|date:"Y-m-d" }}</td>
+        <td>{{ r.fecha_vencimiento|date:"Y-m-d" }}</td>
+        <td>{{ r.diagnostico|truncatewords:3 }}</td>
+        <td>{{ r.medicamento_recetado_texto|truncatewords:3 }}</td>
+        <td>{{ r.estado_receta }}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'actualizar_receta' r.id %}">Editar</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'borrar_receta' r.id %}">Borrar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="9">No hay recetas registradas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

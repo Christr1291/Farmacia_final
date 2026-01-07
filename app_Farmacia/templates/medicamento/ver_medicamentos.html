@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Lista de Medicamentos</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Proveedor</th>
+        <th>Vencimiento</th>
+        <th>Receta?</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in medicamentos %}
+      <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.nombre_medicamento }}</td>
+        <td>{{ m.descripcion|truncatewords:5 }}</td>
+        <td>${{ m.precio_venta }}</td>
+        <td>{{ m.stock }}</td>
+        <td>{{ m.proveedor.nombre_proveedor }}</td>
+        <td>{{ m.fecha_vencimiento|date:"Y-m-d" }}</td>
+        <td>{% if m.requiere_receta %}Sí{% else %}No{% endif %}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'actualizar_medicamento' m.id %}">Editar</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'borrar_medicamento' m.id %}">Borrar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="9">No hay medicamentos registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

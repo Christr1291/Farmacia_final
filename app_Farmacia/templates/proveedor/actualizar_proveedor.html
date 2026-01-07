@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Actualizar Proveedor #{{ proveedor.id }}</h3>
+<form method="POST" action="{% url 'realizar_actualizacion_proveedor' proveedor.id %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Nombre Proveedor</label>
+      <input class="form-control" name="nombre_proveedor" value="{{ proveedor.nombre_proveedor }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Persona de Contacto</label>
+      <input class="form-control" name="contacto_persona" value="{{ proveedor.contacto_persona }}" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Teléfono</label>
+      <input class="form-control" name="telefono" value="{{ proveedor.telefono }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Email</label>
+      <input class="form-control" name="email" type="email" value="{{ proveedor.email }}" required>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Dirección</label>
+    <input class="form-control" name="direccion_proveedor" value="{{ proveedor.direccion_proveedor }}" required>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>RUC</label>
+      <input class="form-control" name="ruc" value="{{ proveedor.ruc }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha Registro</label>
+      <input class="form-control" name="fecha_registro" type="date" value="{{ proveedor.fecha_registro|date:'Y-m-d' }}" required>
+    </div>
+  </div>
+  <button class="btn btn-success" type="submit">Guardar Cambios</button>
+  <a class="btn btn-secondary" href="{% url 'ver_proveedores' %}">Cancelar</a>
+</form>
+{% endblock %}

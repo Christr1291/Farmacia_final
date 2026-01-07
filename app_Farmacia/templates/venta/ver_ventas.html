@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Lista de Ventas</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Factura</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Farmacéutico</th>
+        <th>Total</th>
+        <th>Método Pago</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in ventas %}
+      <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.numero_factura }}</td>
+        <td>{{ v.fecha_venta|date:"Y-m-d H:i" }}</td>
+        <td>{{ v.cliente.nombre }} {{ v.cliente.apellido }}</td>
+        <td>{{ v.farmaceutico.nombre }}</td>
+        <td>${{ v.total_venta }}</td>
+        <td>{{ v.metodo_pago }}</td>
+        <td>{{ v.estado_venta }}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'actualizar_venta' v.id %}">Editar</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'borrar_venta' v.id %}">Borrar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="9">No hay ventas registradas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

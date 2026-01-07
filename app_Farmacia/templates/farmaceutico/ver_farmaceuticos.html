@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Lista de Farmacéuticos</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Licencia</th>
+        <th>Turno</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in farmaceuticos %}
+      <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.nombre }}</td>
+        <td>{{ f.apellido }}</td>
+        <td>{{ f.dni }}</td>
+        <td>{{ f.licencia_colegiado }}</td>
+        <td>{{ f.turno }}</td>
+        <td>{{ f.telefono }}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'actualizar_farmaceutico' f.id %}">Editar</a> 
+          <a class="btn btn-sm btn-danger" href="{% url 'borrar_farmaceutico' f.id %}">Borrar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="8">No hay farmacéuticos registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Actualizar Venta #{{ venta.id }}</h3>
+<form method="POST" action="{% url 'realizar_actualizacion_venta' venta.id %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Número Factura</label>
+      <input class="form-control" name="numero_factura" value="{{ venta.numero_factura }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha Venta</label>
+      <input class="form-control" name="fecha_venta" type="datetime-local" value="{{ venta.fecha_venta|date:'Y-m-d\TH:i' }}" required>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Cliente</label>
+      <select class="form-control" name="cliente">
+        {% for c in clientes %}
+        <option value="{{ c.id }}" {% if c.id == venta.cliente.id %}selected{% endif %}>
+          {{ c.nombre }} {{ c.apellido }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Farmacéutico</label>
+      <select class="form-control" name="farmaceutico">
+        {% for f in farmaceuticos %}
+        <option value="{{ f.id }}" {% if f.id == venta.farmaceutico.id %}selected{% endif %}>
+          {{ f.nombre }} {{ f.apellido }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label>Total Venta</label>
+      <input class="form-control" name="total_venta" type="number" step="0.01" value="{{ venta.total_venta }}" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Descuento</label>
+      <input class="form-control" name="descuento_total" type="number" step="0.01" value="{{ venta.descuento_total }}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Método Pago</label>
+      <input class="form-control" name="metodo_pago" value="{{ venta.metodo_pago }}">
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label>Estado Venta</label>
+    <input class="form-control" name="estado_venta" value="{{ venta.estado_venta }}">
+  </div>
+
+  <button class="btn btn-success" type="submit">Guardar Cambios</button>
+  <a class="btn btn-secondary" href="{% url 'ver_ventas' %}">Cancelar</a>
+</form>
+{% endblock %}

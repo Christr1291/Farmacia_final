@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Actualizar Receta Médica</h3>
+<form method="POST" action="{% url 'realizar_actualizacion_receta' receta.id %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Cliente</label>
+      <select class="form-control" name="cliente">
+        {% for c in clientes %}
+        <option value="{{ c.id }}" {% if c.id == receta.cliente.id %}selected{% endif %}>
+          {{ c.nombre }} {{ c.apellido }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>ID Médico</label>
+      <input class="form-control" name="id_medico_receto" type="number" value="{{ receta.id_medico_receto }}" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Fecha Emisión</label>
+      <input class="form-control" name="fecha_emision" type="date" value="{{ receta.fecha_emision|date:'Y-m-d' }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Fecha Vencimiento</label>
+      <input class="form-control" name="fecha_vencimiento" type="date" value="{{ receta.fecha_vencimiento|date:'Y-m-d' }}" required>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label>Diagnóstico</label>
+    <textarea class="form-control" name="diagnostico" rows="2">{{ receta.diagnostico }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label>Medicamento Recetado (Texto)</label>
+    <textarea class="form-control" name="medicamento_recetado_texto" rows="2">{{ receta.medicamento_recetado_texto }}</textarea>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>Dosis</label>
+      <input class="form-control" name="dosis_indicada" value="{{ receta.dosis_indicada }}">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Estado Receta</label>
+      <input class="form-control" name="estado_receta" value="{{ receta.estado_receta }}">
+    </div>
+  </div>
+
+  <button class="btn btn-success" type="submit">Guardar Cambios</button>
+  <a class="btn btn-secondary" href="{% url 'ver_recetas' %}">Cancelar</a>
+</form>
+{% endblock %}

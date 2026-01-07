@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'inicio_farmacia' %}">Farmacia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'inicio_farmacia' %}">Inicio</a>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="clientesDropdown" role="button" data-bs-toggle="dropdown">Clientes</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_cliente' %}">Agregar Cliente</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_clientes' %}">Ver Clientes</a></li>
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="provDropdown" role="button" data-bs-toggle="dropdown">Proveedores</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_proveedor' %}">Agregar Proveedor</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_proveedores' %}">Ver Proveedores</a></li>
+            </ul>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="farmaDropdown" role="button" data-bs-toggle="dropdown">Farmacéuticos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_farmaceutico' %}">Agregar Farmacéutico</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_farmaceuticos' %}">Ver Farmacéuticos</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="medDropdown" role="button" data-bs-toggle="dropdown">Medicamentos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_medicamento' %}">Agregar Medicamento</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_medicamentos' %}">Ver Medicamentos</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ventaDropdown" role="button" data-bs-toggle="dropdown">Ventas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_venta' %}">Nueva Venta</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_ventas' %}">Ver Ventas</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="detalleDropdown" role="button" data-bs-toggle="dropdown">Detalles Venta</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_detalle' %}">Agregar Detalle</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_detalles' %}">Ver Detalles</a></li>
+            </ul>
+          </li>
+
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="recetaDropdown" role="button" data-bs-toggle="dropdown">Recetas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_receta' %}">Nueva Receta</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_recetas' %}">Ver Recetas</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
